@@ -1,0 +1,27 @@
+{
+   "VendorName":"<% ponGetStatus("vendor-name"); %>",
+   "PartNo":"<% ponGetStatus("part-number"); %>",
+   "BytesSent":"<% ponGetStatus("bytes-sent"); %>",
+   "BytesReceived":"<% ponGetStatus("bytes-received"); %>",
+   "PacketsSent":"<% ponGetStatus("packets-sent"); %>",
+   "PacketsReceived":"<% ponGetStatus("packets-received"); %>",
+   "UnicastPacketsSent":"<% ponGetStatus("unicast-packets-sent"); %>",
+   "UnicastPacketsReceived":"<% ponGetStatus("unicast-packets-received"); %>",
+   "MulticastPacketsSent":"<% ponGetStatus("multicast-packets-sent"); %>",
+   "MulticastPacketsReceived":"<% ponGetStatus("multicast-packets-received"); %>",
+   "BroadcastPacketsSent":"<% ponGetStatus("broadcast-packets-sent"); %>",
+   "BroadcastPacketsReceived":"<% ponGetStatus("broadcast-packets-received"); %>",
+   "fecerrors":"<% ponGetStatus("fec-errors"); %>",
+   "hecerrors":"<% ponGetStatus("hec-errors"); %>",
+   "pausepacketssent":"<% ponGetStatus("pause-packets-sent"); %>",
+   "pausepacketsreceived":"<% ponGetStatus("pause-packets-received"); %>",
+   "pausepacketsreceived":"<% ponGetStatus("pause-packets-received"); %>",
+   "Temperature":"<% ponGetStatus("temperature"); %>",
+   "Voltage":"<% ponGetStatus("voltage"); %>",
+   "TxPower":"<% ponGetStatus("tx-power"); %>",
+   "RxPower":"<% ponGetStatus("rx-power"); %>",
+   "BiasCurrent":"<% ponGetStatus("bias-current"); %>",
+   "FwVersion":"<% getInfo("fwVersion"); %>",
+   "Uptime":"<% getInfo("uptime"); %>"
+}
+   

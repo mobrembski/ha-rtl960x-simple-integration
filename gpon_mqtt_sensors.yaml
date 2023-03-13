@@ -1,0 +1,158 @@
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Vendor
+  value_template: "{{ value_json.VendorName }}"
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Model
+  value_template: "{{ value_json.PartNo }}"
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Version
+  value_template: "{{ value_json.FwVersion }}"
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/Uptime"
+  name: GPON Uptime
+  value_template: "{{ value_json.Uptime }}"
+  icon: mdi:timer-outline
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Temperature
+  value_template: >
+    {{ float(value_json.Temperature.split(" ")[0])|round(2) }}
+  state_class: measurement
+  unit_of_measurement: "°C"
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Laser Voltage
+  value_template: >
+    {{ float(value_json.Voltage.split(" ")[0])|round(4) }}
+  state_class: measurement
+  unit_of_measurement: "V"
+  icon: mdi:flash-triangle
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Bias Current
+  value_template: >
+    {{ float(value_json.BiasCurrent.split(" ")[0])|round(3) }}
+  state_class: measurement
+  unit_of_measurement: "mA"
+  icon: mdi:current-ac
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON TX Power
+  value_template: >
+    {{ float(value_json.TxPower.split(" ")[0])|round(3) }}
+  state_class: measurement
+  unit_of_measurement: "dBm"
+  icon: mdi:signal-distance-variant
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON RX Power
+  value_template: >
+    {{ float(value_json.RxPower.split(" ")[0])|round(3) }}
+  state_class: measurement
+  unit_of_measurement: "dBm"
+  icon: mdi:signal-variant
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Bytes Sent
+  value_template: >
+    {{ value_json.BytesSent|filesizeformat() }}
+  state_class: total_increasing
+  icon: mdi:upload
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Bytes Received
+  value_template: >
+    {{ value_json.BytesReceived|filesizeformat() }}
+  state_class: total_increasing
+  icon: mdi:download
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Packets Sent
+  value_template: "{{ value_json.PacketsSent }}"
+  state_class: total_increasing
+  icon: mdi:upload
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Packets Received
+  value_template: "{{ value_json.PacketsReceived }}"
+  state_class: total_increasing
+  icon: mdi:download
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Unicast Packets Sent
+  value_template: "{{ value_json.UnicastPacketsSent }}"
+  state_class: total_increasing
+  icon: mdi:upload
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Unicast Packets Received
+  value_template: "{{ value_json.UnicastPacketsReceived }}"
+  state_class: total_increasing
+  icon: mdi:download
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Multicast Packets Sent
+  value_template: "{{ value_json.MulticastPacketsSent }}"
+  state_class: total_increasing
+  icon: mdi:upload
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Multicast Packets Received
+  value_template: "{{ value_json.MulticastPacketsReceived }}"
+  state_class: total_increasing
+  icon: mdi:download
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Broadcast Packets Sent
+  value_template: "{{ value_json.BroadcastPacketsSent }}"
+  state_class: total_increasing
+  icon: mdi:upload
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Broadcast Packets Received
+  value_template: "{{ value_json.BroadcastPacketsReceived }}"
+  state_class: total_increasing
+  icon: mdi:download
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Pause Packets Sent
+  value_template: "{{ value_json.PausePacketsSent }}"
+  state_class: total_increasing
+  icon: mdi:upload
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Pause Packets Received
+  value_template: "{{ value_json.PausePacketsReceived }}"
+  state_class: total_increasing
+  icon: mdi:download
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON FEC Errors
+  value_template: "{{ value_json.fecerrors }}"
+  state_class: total_increasing
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON HEC Errors
+  value_template: "{{ value_json.hecerrors }}"
+  state_class: total_increasing
+- state_topic: "modem/mainData"
+  json_attributes_topic: "modem/mainData"
+  name: GPON Broadcast Packets Received
+  value_template: "{{ value_json.BroadcastPacketsReceived }}"
+  state_class: total_increasing
+  icon: mdi:download
+- state_topic: "modem/ONUState"
+  name: GPON State
+  icon: mdi:state-machine
+- state_topic: "modem/FreeMem"
+  name: GPON Free Mem
+  icon: mdi:memory
+  value_template: >
+    {{ (value|int*1024)|filesizeformat() }}
+- state_topic: "modem/FreeMemPercentage"
+  name: GPON Free Mem %
+  icon: mdi:memory
+  unit_of_measurement: '%'
