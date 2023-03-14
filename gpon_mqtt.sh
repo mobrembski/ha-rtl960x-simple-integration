@@ -19,10 +19,13 @@ echo "Done login"
 CONTENT=$(curl -s http://192.168.100.1/wlfon.asp)
 ONUState=$(timeout 10s sshpass -p $SSH_PASS ssh $SSH_OPTIONS admin@$GPON_TERMINAL_ADDR -C 'diag gpon get onu-state | grep ONU')
 MEMINFO=$(timeout 10s sshpass -p $SSH_PASS ssh $SSH_OPTIONS admin@$GPON_TERMINAL_ADDR -C 'cat /proc/meminfo' | awk '/MemTotal/ {total=$2} /MemFree/ {free=$2} /Buffers/ {buffers=$2} $1 ~ /^Cache/ {cached=$2} END {printf "%1d %.1f", ((total - free) - (buffers + cached)), (((total - free) - (buffers + cached))/total)*100}')
+UPTIME_RAW=$(timeout 10s sshpass -p $SSH_PASS ssh $SSH_OPTIONS admin@$GPON_TERMINAL_ADDR -C 'cat /proc/uptime')
 
 mosquitto_pub -h $MQTT_SERVER -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASS -t "$MQTT_TOPIC" -m "$CONTENT"
 mosquitto_pub -h $MQTT_SERVER -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASS -t "modem/ONUState" -m "$(echo $ONUState | awk '{print $3" "$4 $5 $6}')"
 mosquitto_pub -h $MQTT_SERVER -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASS -t "modem/FreeMem" -m "$(echo $MEMINFO | awk '{print $1}')"
 mosquitto_pub -h $MQTT_SERVER -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASS -t "modem/FreeMemPercentage" -m "$(echo $MEMINFO | awk '{print $2}')"
+mosquitto_pub -h $MQTT_SERVER -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASS -t "modem/UptimeRaw" -m "$(echo $UPTIME_RAW | awk '{print $1}')"
+mosquitto_pub -h $MQTT_SERVER -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASS -t "modem/UptimeIdleRaw" -m "$(echo $UPTIME_RAW | awk '{print $2}')"
 mosquitto_pub -h $MQTT_SERVER -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASS -t "modem/timestamp" -m "$(date)"
 

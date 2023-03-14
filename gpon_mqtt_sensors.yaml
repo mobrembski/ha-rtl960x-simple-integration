@@ -15,6 +15,46 @@
   name: GPON Uptime
   value_template: "{{ value_json.Uptime }}"
   icon: mdi:timer-outline
+- state_topic: "modem/UptimeRaw"
+  name: GPON Uptime Human
+  icon: mdi:timer-outline
+  value_template: >-
+    {% set time = value | int %}
+    {% set seconds = (time % 60) | int %}
+    {% set minutes = ((time % 3600) / 60) | int %}
+    {% set hours = ((time % 86400) / 3600) | int %}
+    {% set days = (time / 86400) | int %}
+  
+    {% if days > 0 %}
+        {{ days }}d 
+    {% endif %}
+    {% if hours > 0 %}
+        {{ hours }}h 
+    {% endif %}
+    {% if minutes > 0 %}
+        {{ minutes }}m 
+    {% endif %}
+    {{ seconds }}s
+- state_topic: "modem/UptimeIdleRaw"
+  name: GPON Uptime Idle Human
+  icon: mdi:timer-outline
+  value_template: >-
+    {% set time = value | int %}
+    {% set seconds = (time % 60) | int %}
+    {% set minutes = ((time % 3600) / 60) | int %}
+    {% set hours = ((time % 86400) / 3600) | int %}
+    {% set days = (time / 86400) | int %}
+  
+    {% if days > 0 %}
+        {{ days }}d 
+    {% endif %}
+    {% if hours > 0 %}
+        {{ hours }}h 
+    {% endif %}
+    {% if minutes > 0 %}
+        {{ minutes }}m 
+    {% endif %}
+    {{ seconds }}s
 - state_topic: "modem/mainData"
   json_attributes_topic: "modem/mainData"
   name: GPON Temperature
