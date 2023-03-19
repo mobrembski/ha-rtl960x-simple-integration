@@ -6,12 +6,12 @@ MQTT_PORT=1883
 MQTT_USER=mqtt
 MQTT_PASS=666mqtt
 MQTT_TOPIC=modem/mainData
-SSH_OPTIONS='-o ConnectTimeout=3 -o StrictHostKeyChecking=no -o PubkeyAcceptedAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-rsa -o Ciphers=+3des-cbc'
+SSH_OPTIONS='-o ConnectTimeout=3 -o StrictHostKeyChecking=no -o PubkeyAcceptedAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa -o KexAlgorithms=+diffie-hellman-group1-sha1 -o HostKeyAlgorithms=+ssh-rsa -o Ciphers=+3des-cbc'
 
 BINDED=$(timeout 10s sshpass -p $SSH_PASS ssh $SSH_OPTIONS admin@$GPON_TERMINAL_ADDR -C 'mount | grep wlfon')
 if [ -z "$BINDED" ]; then
   echo "Not installed..."
-  sshpass -p 'admin' ssh admin@$GPON_TERMINAL_ADDR -C 'mount -o bind /var/config/status.json /home/httpd/web/wlfon.asp'
+  sshpass -p 'admin' ssh $SSH_OPTIONS admin@$GPON_TERMINAL_ADDR -C 'mount -o bind /var/config/status.json /home/httpd/web/wlfon.asp'
 fi
 echo "Installed...Continue"
 curl -s -d "challenge=&username=admin&password=$SSH_PASS&save=Login&submit-url=%2Fadmin%2Flogin.asp" -X POST http://192.168.100.1/boaform/admin/formLogin > /dev/null
